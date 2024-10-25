@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+    <div id="container" style="width:100%; height:900px;"></div>
+    <script>
+        function loadChart(tvalues, cvalues) {
+            const data = tvalues.map((timestamp, index) => [parseInt(timestamp), parseFloat(cvalues[index])]);
+            const chartColor = 'green';
+
+            Highcharts.chart('container', {
+                chart: {
+                    backgroundColor: '#f3f3f3'
+                },
+                title: {
+                    text: 'Stock Chart'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    title: {
+                        text: 'Timestamp'
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: ''
+                    },
+                    opposite: true
+                },
+                series: [{
+                    name: 'Stock Price',
+                    data: data,
+                    showInLegend: false,
+                    marker: {
+                        enabled: false
+                    },
+                    color: chartColor
+                }]
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
